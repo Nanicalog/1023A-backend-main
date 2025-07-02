@@ -4,51 +4,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastrar Estudante</title>
+    <title>Cadastrar Produtos</title>
 </head>
 
 <body>
     <form onsubmit="event.preventDefault();trataform()">
         <label for="id">id</label>
         <input type="text" id="id" name="id">
+
         <label for="nome">nome</label>
         <input type="text" id="nome" name="nome">
+
+        <label for="preco">preco</label>
+        <input type="text" id="preco" name="preco">
+
+        <label for="categoria">Categoria</label>
+        <input type="text" id="categoria" name="categoria">
+
         <input type="submit" value="Cadastrar">
     </form>
     <script>
         async function trataform() {
             const inputId = document.getElementById("id")
             const inputNome = document.getElementById("nome")
+            const inputPreco = document.getElementById("Preco")
+            const inputCategoria = document.getElementById("categoria")
             const id = inputId.value
             const nome = inputNome.value
+            const preco = inputPreco.value
+            const Categoria = inputCategoria.value
 
-            const objEstudante = {
+            const objProdutos = {
                 id,
-                nome
+                nome,
+                preco,
+                categoria
             }
-            try{
-                const resposta = await fetch("http://localhost:8000/estudantes",{
-                    headers:{
+            try {
+                const resposta = await fetch("http://localhost:8000/Produtos", {
+                    headers: {
                         'Content-Type': 'application/json'
                     },
-                    method:"POST",
-                    body: JSON.stringify(objEstudante)
+                    method: "POST",
+                    body: JSON.stringify(obProdutos)
                 })
 
-                if(resposta.status===200){
+                if (resposta.status === 200) {
                     alert("Estudante cadastrado com sucesso!")
                 }
-                if(resposta.status===400){
+                if (resposta.status === 400) {
                     const dados = await resposta.json()
                     alert(`Erro do lado do backend:"\n${dados.mensagem}`)
                 }
-                if(resposta.status===404){
+                if (resposta.status === 404) {
                     alert("Erro não identificado. :(")
                 }
 
-            }catch(erro){
-                alert("Erro: Erro na requisição do FETCH\n"+
-                 "Você ligou o BACKEND com npm run dev?")
+            } catch (erro) {
+                alert("Erro: Erro na requisição do FETCH\n" +
+                    "Você ligou o BACKEND com npm run dev?")
             }
         }
     </script>

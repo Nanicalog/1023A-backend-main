@@ -10,7 +10,7 @@ app.get('/produtos', async (request: FastifyRequest, reply: FastifyReply) => {
             host: "localhost",
             user: 'root',
             password: "",
-            database: 'tere',
+            database: 'loja',
             port: 3306
         })
         const resultado =  await conn.query("SELECT * FROM produtos")
@@ -46,7 +46,7 @@ app.post('/produtos', async (request: FastifyRequest, reply: FastifyReply) => {
             host: "localhost",
             user: 'root',
             password: "",
-            database: 'tere',
+            database: 'loja',
             port: 3306
         })
         const resultado =  await conn.query("INSERT INTO produtos (id,nome,preco,categoria) VALUES (?,?,?,?)",[id,nome,preco,categoria])
