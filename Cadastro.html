@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cadastrar Produto</title>
+</head>
+
+<body>
+  <h1>Cadastrar Produto</h1>
+
+  <form onsubmit="event.preventDefault(); cadastrarProduto()">
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome" name="nome" required />
+
+    <label for="preco">Preço:</label>
+    <input type="number" id="preco" name="preco" step="0.01" required />
+
+    <label for="categoria">Categoria:</label>
+    <select id="categoria" name="categoria" required>
+      <option value="">Selecione</option>
+      <option value="Perfume">Perfume</option>
+      <option value="Body Splash">Body Splash</option>
+    </select>
+
+    <br /><br />
+    <input type="submit" value="Cadastrar" />
+  </form>
+
+  <script>
+    async function cadastrarProduto() {
+      const nome = document.getElementById('nome').value;
+      const preco = parseFloat(document.getElementById('preco').value);
+      const categoria = document.getElementById('categoria').value;
+
+      const produto = { nome, preco, categoria };
+
+      try {
+        const resposta = await fetch('http://localhost:8000/produtos', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(produto)
+        });
+
+        if (resposta.status === 201) {
+          alert('Produto cadastrado com sucesso!');
+        } else if (resposta.status === 400) {
+          const dados = await resposta.json();
+          alert(`Erro do lado do backend:\n${dados.mensagem}`);
+        } else {
+          alert('Erro inesperado.');
+        }
+      } catch (erro) {
+        alert('Erro na requisição: verifique se o backend está rodando.');
+        console.error(erro);
+      }
+    }
+  </script>
+</body>
+
+</html>
