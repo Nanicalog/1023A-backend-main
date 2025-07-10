@@ -10,7 +10,7 @@ app.register(cors, {
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
 });
 
-// Função para criar conexão com o banco
+// Função para criar conexão com o bannco de dados
 async function criarConexao() {
   return mysql.createConnection({
     host: 'localhost',
