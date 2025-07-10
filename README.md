@@ -1,4 +1,4 @@
-CREATE DATABASE loja;
+Create DATABASE loja;
 USE loja;
 
 -- Cria a tabela de categorias
@@ -25,9 +25,20 @@ CREATE TABLE produtos (
 -- Supondo que 'Perfume' tem id 1 e 'Body Splash' tem id 2
 INSERT INTO produtos (nome, preco, categoria_id) VALUES
 ('Sweet Tooth', 400.50, 1),
-('Mon Paris', 800.00, 1),
+('Ultra Male', 300.00, 1),
+('Mon Paris', 800.00, 2),
 ('Thank U Next', 300.00, 2),
-('Miss Dior', 800.00, 2);
+('Miss Dior', 800.00, 1),
+('Scandal', 400.00, 2),
+('La Beau', 400.00, 1),
+('Sauvage', 400.00, 1),
+('Toilette', 400.00, 2);
+
+
+
+
+
+
 
 -- Consulta com INNER JOIN para exibir nome da categoria
 SELECT 
