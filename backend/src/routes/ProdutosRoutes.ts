@@ -33,9 +33,9 @@ export default async function produtosRoutes(fastify: FastifyInstance) {
         //    (Importante: "Feminino" no frontend, "Femino" no banco)
         let categoria_id: number | null = null;
         if (categoria.toLowerCase() === 'feminino') {
-            categoria_id = 1; // ID de 'Femino' no seu banco
+            categoria_id = 1; // ID de 'Femino' no banco
         } else if (categoria.toLowerCase() === 'masculino') {
-            categoria_id = 2; // ID de 'Masculino' no seu banco
+            categoria_id = 2; // ID de 'Masculino' no banco
         }
 
         if (categoria_id === null) {
