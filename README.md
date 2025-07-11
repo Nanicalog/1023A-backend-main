@@ -1,4 +1,13 @@
-CREATE DATABASE loja;
+
+
+
+
+
+
+
+
+Banco de dados
+Create DATABASE loja;
 USE loja;
 
 -- Cria a tabela de categorias
@@ -30,7 +39,7 @@ INSERT INTO produtos (nome, preco, categoria_id) VALUES
 ('Thank U Next', 300.00, 1),
 ('Miss Dior', 800.00, 1),
 ('Scandal', 400.00, 2),
-('La Beau', 400.00, 2),
+('La Beau', 800.00, 2),
 ('Sauvage', 400.00, 2),
 ('Toilette', 400.00, 2);
 
