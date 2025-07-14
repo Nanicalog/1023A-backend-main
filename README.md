@@ -1,12 +1,45 @@
+🤍ྀིPluméria🎀༘⋆
+Pluméria é um sistema de gerenciamento de vendas de perfumes.
+
+ꕤ Funcionalidades Implementadas
+Foi utilizado React no frontend, e a navegação entre as páginas é feita com a biblioteca react-router-dom.
+
+Navegação entre páginas com React Router DOM.
 
 
+Header.tsx: cabeçalho com navegação.
+Principal.tsx: página para visualização dos produtos.
 
+Backend em Fastify (index.ts)
+API RESTful com endpoints para consulta. Conexão com MySQL para armazenamento dos dados. Tratamento de erros detalhados para auxiliar no desenvolvimento.
 
+🎀 Como Executar o Projeto
 
+BACKEND
+# Instalar dependências
+npm install fastify @fastify/cors mysql2
 
+# Se estiver usando TypeScript
+npm install -D typescript tsx @types/node
+#npm run dev
 
+FRONTEND
+# Instalar dependências
+npm install
 
-Banco de dados
+# Iniciar o servidor de desenvolvimento
+npm run dev
+
+Conexão Banco de dados
+
+createPool({
+  host: 'localhost',
+  user: 'root',
+  password: '',
+  database: 'loja'
+});
+
+Código Banco de dados
 Create DATABASE loja;
 USE loja;
 
@@ -51,3 +84,6 @@ SELECT
   c.nome AS categoria
 FROM produtos p
 INNER JOIN categorias c ON p.categoria_id = c.id;
+
+
+
