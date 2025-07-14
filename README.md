@@ -21,9 +21,7 @@ npm install fastify @fastify/cors mysql2
 
 # Se estiver usando TypeScript
 npm install -D typescript tsx @types/node
-
-# Iniciar o servidor (modo dev)
-npx tsx src/server.ts
+#npm run dev
 
 FRONTEND
 # Instalar dependências
