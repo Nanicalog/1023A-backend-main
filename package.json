@@ -2,9 +2,11 @@
   "dependencies": {
     "@fastify/cors": "^11.0.1",
     "@types/mysql": "^2.15.27",
+    "body-parser": "^2.2.0",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
     "fastify": "^5.4.0",
-    "mysql2": "^3.14.2",
-    "tsx": "^4.20.3"
+    "mysql2": "^3.14.2"
   },
   "name": "1023a-backend-main",
   "version": "1.0.0",
@@ -24,5 +26,10 @@
     "url": "https://github.com/Nanicalog/1023A-backend-main/issues"
   },
   "homepage": "https://github.com/Nanicalog/1023A-backend-main#readme",
-  "description": ""
+  "description": "Banco de dados\r Create DATABASE loja;\r USE loja;",
+  "devDependencies": {
+    "@types/node": "^24.0.13",
+    "tsx": "^4.20.3",
+    "typescript": "^5.8.3"
+  }
 }

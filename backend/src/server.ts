@@ -11,7 +11,7 @@ const app = Fastify();
 // Configura o CORS para permitir requisições de qualquer origem
 app.register(cors, {
     origin: '*',
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE',],
 });
 
 // Registra as rotas de produtos com o prefixo /Produtos
@@ -27,8 +27,16 @@ const start = async () => {
         // Em caso de erro, mostra no console e encerra
         app.log.error(err);
         process.exit(1);
+        
     }
 };
 
 // Chama a função para iniciar o servidor
 start();
+
+
+
+
+
+
+
