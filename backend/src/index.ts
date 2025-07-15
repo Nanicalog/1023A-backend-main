@@ -179,7 +179,6 @@ function tratarErro(erro: any, reply: FastifyReply) {
     }
 }
 
-
 app.listen({ port: 3001 }, (err, address) => {
     if (err) {
         console.error(err);
