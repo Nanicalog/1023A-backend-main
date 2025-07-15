@@ -22,7 +22,7 @@ const start = async () => {
     try {
         // Inicia o servidor na porta 3000
         await app.listen({ port: 3000, host: '0.0.0.0' });
-        console.log('Servidor rodando em http://localhost:3000');
+        console.log('Servidor rodando em http://localhost:8000');
     } catch (err) {
         // Em caso de erro, mostra no console e encerra
         app.log.error(err);
@@ -33,10 +33,6 @@ const start = async () => {
 
 // Chama a função para iniciar o servidor
 start();
-
-
-
-
 
 
 

@@ -116,22 +116,20 @@ app.put('/produtos/:id', async (request: FastifyRequest, reply: FastifyReply) =>
     }
 });
 
-
 app.delete('/produtos/:id', async (request: FastifyRequest, reply: FastifyReply) => {
-    const { id } = request.params as any;
-    let conn;
+  const { id } = request.params as any;
+  let conn;
 
-    try {
-        conn = await criarConexao();
-        await conn.query("DELETE FROM produtos WHERE id = ?", [id]);
-        reply.status(200).send({ mensagem: "Produto removido com sucesso" });
-    } catch (erro: any) {
-        tratarErro(erro, reply);
-    } finally {
-        if (conn) await conn.end();
-    }
+  try {
+    conn = await criarConexao();
+    await conn.query("DELETE FROM produtos WHERE id = ?", [id]);
+    reply.status(200).send({ mensagem: "Produto removido com sucesso" });
+  } catch (erro: any) {
+    tratarErro(erro, reply);
+  } finally {
+    if (conn) await conn.end();
+  }
 });
-
 
 app.get('/relatorio', async (request: FastifyRequest, reply: FastifyReply) => {
     let conn;
@@ -170,7 +168,7 @@ function tratarErro(erro: any, reply: FastifyReply) {
 }
 
 
-app.listen({ port: 8000 }, (err, address) => {
+app.listen({ port: 3001 }, (err, address) => {
     if (err) {
         console.error(err);
         process.exit(1);
