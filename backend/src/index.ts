@@ -117,31 +117,13 @@ app.put('/produtos/:id', async (request: FastifyRequest, reply: FastifyReply) =>
 });
 
 app.delete('/produtos/:id', async (request: FastifyRequest, reply: FastifyReply) => {
-  const { id } = request.params as any;
-  let conn;
-
-  try {
-    conn = await criarConexao();
-    await conn.query("DELETE FROM produtos WHERE id = ?", [id]);
-    reply.status(200).send({ mensagem: "Produto removido com sucesso" });
-  } catch (erro: any) {
-    tratarErro(erro, reply);
-  } finally {
-    if (conn) await conn.end();
-  }
-});
-
-app.get('/relatorio', async (request: FastifyRequest, reply: FastifyReply) => {
+    const { id } = request.params as any;
     let conn;
+
     try {
         conn = await criarConexao();
-        const [rows] = await conn.query(
-            `SELECT p.id, p.nome, p.preco, c.nome AS categoria
-       FROM produtos p
-       INNER JOIN categorias c ON p.categoria_id = c.id`
-        );
-
-        reply.status(200).send(rows);
+        await conn.query("DELETE FROM produtos WHERE id = ?", [id]);
+        reply.status(200).send({ mensagem: "Produto removido com sucesso" });
     } catch (erro: any) {
         tratarErro(erro, reply);
     } finally {
@@ -149,6 +131,36 @@ app.get('/relatorio', async (request: FastifyRequest, reply: FastifyReply) => {
     }
 });
 
+app.get('/relatorio', async (request: FastifyRequest, reply: FastifyReply) => {
+    let conn; // Variável para armazenar a conexão com o banco de dados
+
+    try {
+        //  Abre uma conexão com o banco (função criarConexao deve retornar um objeto de conexão)
+        conn = await criarConexao();
+
+        // Executa a consulta SQL para buscar produtos com suas categorias
+        const [rows] = await conn.query(
+            `SELECT 
+                p.id,          -- ID do produto
+                p.nome,        -- Nome do produto
+                p.preco,       -- Preço do produto
+                c.nome AS categoria -- Nome da categoria (renomeado como 'categoria')
+             FROM produtos p
+             INNER JOIN categorias c ON p.categoria_id = c.id` // Faz o INNER JOIN para trazer o nome da categoria correspondente
+        );
+
+        //  Envia a resposta HTTP com status 200 (sucesso) e os dados no formato JSON
+        reply.status(200).send(rows);
+
+    } catch (erro: any) {
+        //  Se ocorrer algum erro, chama uma função para tratar (exibir mensagem adequada)
+        tratarErro(erro, reply);
+
+    } finally {
+        //  Fecha a conexão com o banco, garantindo que não fique aberta
+        if (conn) await conn.end();
+    }
+});
 
 function tratarErro(erro: any, reply: FastifyReply) {
     if (erro.code === "ECONNREFUSED") {
