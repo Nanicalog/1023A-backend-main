@@ -1,4 +1,4 @@
-// Importa o Fastify e o plugin de CORS
+// configura e inicia o servidor do backend, que vai receber as requisições do front através do REACT
 import Fastify from 'fastify';
 import cors from '@fastify/cors';
 
@@ -12,10 +12,10 @@ const app = Fastify();
 app.register(cors, {
     origin: '*',
     methods: ['GET', 'POST', 'PUT', 'DELETE',],
-});
+}); //permite que a aplicação do front(react,) rode em outra porta
 
-// Registra as rotas de produtos com o prefixo /Produtos
-app.register(ProdutosRoutes, { prefix: '/Produtos' });
+// importa as rotas que foram definidas com o produtosRoures
+app.register(ProdutosRoutes, { prefix: '/Produtos' });// todas as rotas vai começar com produtos
 
 // Função para iniciar o servidor
 const start = async () => {
